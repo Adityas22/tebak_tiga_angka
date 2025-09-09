@@ -158,11 +158,25 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   destroyDataButton.addEventListener("click", function () {
+    // Hapus semua key
     sessionStorage.removeItem(sessionAnswerKey);
     sessionStorage.removeItem(sessionUserAttemptsKey);
     sessionStorage.removeItem(sessionUserIsPlayingKey);
     localStorage.removeItem(localTotalVictoryKey);
     localStorage.removeItem(localMaximumAttemptsKey);
+
+    // Set default agar tidak NaN
+    localStorage.setItem(localTotalVictoryKey, 0);
+    localStorage.setItem(localMaximumAttemptsKey, 0);
+    sessionStorage.setItem(sessionUserAttemptsKey, 0);
+
+    // Update tampilan langsung (tanpa harus refresh)
+    document.getElementById("local-total-victory-field").innerText = 0;
+    document.getElementById("local-maximum-attempt-field").innerText = 0;
+    document.getElementById("session-user-attempts-amount-field").innerText = 0;
+
+    // Ganti alert jadul dengan toast / notifikasi
+    showToast("Data berhasil direset!");
 
     Swal.fire({
       icon: "success",
