@@ -1,0 +1,121 @@
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f9f9f9, #eef2f3);
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Heading utama */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #222;
+  font-size: 2.2rem;
+}
+
+/* Container utama */
+.contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Card style */
+.child-content {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1 1 40%;
+  min-width: 300px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.child-content:hover {
+  transform: translateY(-4px);
+}
+
+.child-content h2 {
+  margin-bottom: 10px;
+  color: #444;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+hr {
+  height: 2px;
+  background-color: #ddd;
+  border: none;
+  margin: 10px 0 20px;
+}
+
+/* List instruksi */
+#instructions-list li {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+/* Tombol */
+.button,
+.answer-button {
+  background: linear-gradient(135deg, #4cafef, #357ae8);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.button {
+  padding: 10px 18px;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.answer-button {
+  padding: 15px;
+  font-size: 1.2rem;
+  margin: 8px;
+  width: 70px;
+}
+
+.button:hover,
+.answer-button:hover {
+  background: linear-gradient(135deg, #357ae8, #2a5bbd);
+  transform: scale(1.05);
+}
+
+/* Session stats & teks */
+.session-stat-item h3,
+.local-stat-item h3 {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+#session-true-answer-field {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+#session-user-wrong-answer-field {
+  color: #c62828;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contents {
+    flex-direction: column;
+    align-items: center;
+  }
+}
