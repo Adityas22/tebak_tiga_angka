@@ -158,33 +158,43 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   destroyDataButton.addEventListener("click", function () {
-    // Hapus semua key
-    sessionStorage.removeItem(sessionAnswerKey);
-    sessionStorage.removeItem(sessionUserAttemptsKey);
-    sessionStorage.removeItem(sessionUserIsPlayingKey);
-    localStorage.removeItem(localTotalVictoryKey);
-    localStorage.removeItem(localMaximumAttemptsKey);
-
-    // Set default agar tidak NaN
-    localStorage.setItem(localTotalVictoryKey, 0);
-    localStorage.setItem(localMaximumAttemptsKey, 0);
-    sessionStorage.setItem(sessionUserAttemptsKey, 0);
-
-    // Update tampilan langsung (tanpa harus refresh)
-    localTotalVictoryField.innerText = "";
-    localMaximumAttemptField.innerText = "";
-    sessionUserAttemptsField.innerText = "";
-
-    // Ganti alert jadul dengan toast / notifikasi
-    showToast("Data berhasil direset!");
-
     Swal.fire({
-      icon: "success",
-      title: "Data Dihapus",
-      text: "Silakan refresh halaman untuk mulai ulang!",
+      icon: "warning",
+      title: "Hapus Semua Data?",
+      text: "Data permainan akan direset dan game dimulai ulang.",
+      showCancelButton: true,
       confirmButtonText: "OK",
-      timer: 10000,
-      timerProgressBar: true,
+      cancelButtonText: "Batal",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Reset data
+        sessionStorage.setItem(sessionAnswerKey, "");
+        sessionStorage.setItem(sessionUserAttemptsKey, 0);
+        sessionStorage.setItem(sessionUserIsPlayingKey, false);
+        localStorage.setItem(localTotalVictoryKey, 0);
+        localStorage.setItem(localMaximumAttemptsKey, 0);
+
+        // Update tampilan field
+        localTotalVictoryField.innerText = 0;
+        localMaximumAttemptField.innerText = 0;
+        sessionUserAttemptsField.innerText = 0;
+        sessionUserAnswerField.innerText = "";
+        sessionUserWrongAnswerField.innerText = "";
+
+        // Langsung mulai game (seperti klik tombol Bermain)
+        sessionStorage.setItem(sessionAnswerKey, getAnswer());
+        sessionStorage.setItem(sessionUserIsPlayingKey, true);
+        beforeGameDisplay.setAttribute("hidden", true);
+        duringGameDisplay.removeAttribute("hidden");
+
+        Swal.fire({
+          icon: "success",
+          title: "Data berhasil direset!",
+          text: "Permainan dimulai kembali 🚀",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      }
     });
   });
 });
