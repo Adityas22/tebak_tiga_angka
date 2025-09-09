@@ -158,8 +158,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   destroyDataButton.addEventListener("click", function () {
-    sessionStorage.clear();
-    localStorage.clear();
+    sessionStorage.removeItem(sessionAnswerKey);
+    sessionStorage.removeItem(sessionUserAttemptsKey);
+    sessionStorage.removeItem(sessionUserIsPlayingKey);
+    localStorage.removeItem(localTotalVictoryKey);
+    localStorage.removeItem(localMaximumAttemptsKey);
 
     Swal.fire({
       icon: "success",
