@@ -171,9 +171,9 @@ document.addEventListener("DOMContentLoaded", function () {
     sessionStorage.setItem(sessionUserAttemptsKey, 0);
 
     // Update tampilan langsung (tanpa harus refresh)
-    document.getElementById("local-total-victory-field").innerText = 0;
-    document.getElementById("local-maximum-attempt-field").innerText = 0;
-    document.getElementById("session-user-attempts-amount-field").innerText = 0;
+    localTotalVictoryField.innerText = "";
+    localMaximumAttemptField.innerText = "";
+    sessionUserAttemptsField.innerText = "";
 
     // Ganti alert jadul dengan toast / notifikasi
     showToast("Data berhasil direset!");
